@@ -23,8 +23,7 @@ const executeQuery = async (url, query) => {
   }
 };
 
-// const url = 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking/graphql';
-const url = 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking/graphql?query=%7B%0A++validators%28%0A++++orderBy%3A+id%0A++++first%3A+1000%0A++++block%3A+%7B+number%3A+5095899+%7D%0A++++where%3A+%7B+id%3A+%220x4e5e774d3837bd9302b83cad94a112575411f07b%22+%7D%0A++%29+%7B%0A++++id%0A++++commissions%0A++%7D%0A%7D';
+const url = 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking/graphql';
 
 const query = `
 {
