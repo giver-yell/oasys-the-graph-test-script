@@ -12,21 +12,21 @@ const executeQuery = async (url, query, blockNumber) => {
 
     const resultText = await response.text();
     if (!response.ok) {
-      console.error(`GraphQL Error Response (URL: ${url}, Block ${blockNumber}):`, resultText);
+      console.error(`GraphQL Error Response (URL: ${url}, Block: ${blockNumber}):`, resultText);
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const result = JSON.parse(resultText);
-    console.log(`Query Result for URL: ${url}, Block ${blockNumber}:`, JSON.stringify(result, null, 2));
+    console.log(`Query Result for URL: ${url}, Block: ${blockNumber}:`, JSON.stringify(result, null, 2));
   } catch (error) {
-    console.error(`Error executing query for URL: ${url}, Block ${blockNumber}:`, error);
+    console.error(`Error executing query for URL: ${url}, Block: ${blockNumber}:`, error);
   }
 };
 
 // Fix this here.
 const urls = [
-  // 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
-  'https://graph.explorer-v6-oasys.net/subgraphs/name/oasys/staking',
+  'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
+  // 'https://graph.explorer-v6-oasys.net/subgraphs/name/oasys/staking',
   // 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
 ];
 
@@ -44,11 +44,18 @@ const createQuery = (blockNumber) => `
 }
 `;
 
-const blockNumbers = [5095898, 5095899, 5095900];
+// Fix this here.
+const fromBlock = 5095895;
+const toBlock = 5095900;
 
-urls.forEach((url) => {
-  blockNumbers.forEach((blockNumber) => {
-    const query = createQuery(blockNumber);
-    executeQuery(url, query, blockNumber);
-  });
-});
+const checkBlocksForUrls = async (urls, from, to) => {
+  for (const url of urls) {
+    console.log(`Checking blocks for URL: ${url}`);
+    for (let blockNumber = from; blockNumber <= to; blockNumber++) {
+      const query = createQuery(blockNumber);
+      await executeQuery(url, query, blockNumber);
+    }
+  }
+};
+
+checkBlocksForUrls(urls, fromBlock, toBlock);
