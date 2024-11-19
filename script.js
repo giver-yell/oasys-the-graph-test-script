@@ -23,7 +23,7 @@ const executeQuery = async (url, query) => {
   }
 };
 
-const url = 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking/graphql';
+const url = 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking';
 
 const query = `
 {
