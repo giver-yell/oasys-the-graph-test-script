@@ -25,9 +25,9 @@ const executeQuery = async (url, query, blockNumber) => {
 
 // Fix this here.
 const urls = [
-  'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
-  'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
-  'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
+  // 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
+  'https://graph.explorer-v6-oasys.net/subgraphs/name/oasys/staking',
+  // 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
 ];
 
 const createQuery = (blockNumber) => `
@@ -44,7 +44,7 @@ const createQuery = (blockNumber) => `
 }
 `;
 
-const blockNumbers = [5095900, 5095898];
+const blockNumbers = [5095898, 5095899, 5095900];
 
 urls.forEach((url) => {
   blockNumbers.forEach((blockNumber) => {
