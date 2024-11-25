@@ -28,6 +28,9 @@ const urls = [
   'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
   // 'https://graph.explorer-v6-oasys.net/subgraphs/name/oasys/staking',
   // 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking',
+  'http://13.114.157.254:8000/subgraphs/name/oasys/staking/', // bin さん
+  // 'http://43.206.252.135:8000/subgraphs/name/oasys/staking' // shirai
+  'http://13.114.157.254:8000/subgraphs/name/oasys/staking/' // binさんのgrafting 
 ];
 
 const createQuery = (blockNumber) => `
@@ -36,7 +39,7 @@ const createQuery = (blockNumber) => `
     orderBy: id,
     first: 1000,
     block: { number: ${blockNumber} },
-    where: { id: "0x4e5e774d3837bd9302b83cad94a112575411f07b" }
+    where: { id: "0x15f41edfe3556b853d79f96edbae4b68c0217673" }
   ) {
     id
     commissions
@@ -44,15 +47,29 @@ const createQuery = (blockNumber) => `
 }
 `;
 
+const myStakeQuery = () => `
+{
+  staker(id: "0xd07e9f16687967d093f4570c960a7dc180895089") {
+    id
+    totalStake
+  }
+}
+`
+
 // Fix this here.
-const fromBlock = 5095895;
-const toBlock = 5095900;
+// hardfork = 5095900;
+const fromBlock = 4095890;
+const toBlock = 4095910;
+
+// const fromBlock = 13599;
+// const toBlock = 13600;
 
 const checkBlocksForUrls = async (urls, from, to) => {
   for (const url of urls) {
     console.log(`Checking blocks for URL: ${url}`);
     for (let blockNumber = from; blockNumber <= to; blockNumber++) {
-      const query = createQuery(blockNumber);
+      // const query = createQuery(blockNumber);
+      const query = myStakeQuery();
       await executeQuery(url, query, blockNumber);
     }
   }
