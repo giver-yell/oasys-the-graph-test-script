@@ -27,9 +27,10 @@ const executeQuery = async (url, query, blockNumber) => {
 };
 
 const urls = [
-  // 'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking', // Production URL
-  'https://graph.explorer-v6-oasys.net/subgraphs/name/oasys/staking', // 手作業、接木 (URL A)
-  'http://13.114.157.254:8000/subgraphs/name/oasys/staking/',        // grafting (URL B)
+  'https://graph.mainnet.oasys.games/subgraphs/name/oasys/staking', // Production URL
+  // 'https://graph.explorer-v6-oasys.net/subgraphs/name/oasys/staking', // 手作業、接木 (URL A)
+  // 'http://13.114.157.254:8000/subgraphs/name/oasys/staking/',        // grafting (URL B)
+    'http://54.178.33.215:8000/subgraphs/name/oasys/staking/', // ifelse by bin-san
 ];
 
 // 0x73929c46133d15eb2d08db628942ae2c5243a033 sample
