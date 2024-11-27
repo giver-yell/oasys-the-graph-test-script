@@ -1,3 +1,4 @@
+// このファイルは、二つのgraphqlに対して、total stakeをepochごとに比較する
 import fetch from 'node-fetch';
 
 const executeQuery = async (url, query, blockNumber) => {
@@ -45,7 +46,7 @@ const myStakeQuery = (blockNumber) => `
 }
 `;
 
-const blockNumbers = [1000000, 3000000, 5000000, 5100000, 5110000];
+const blockNumbers = [1000000, 1500000, 1800000, 2000000, 2500000, 3000000, 5000000, 5100000, 5110000];
 
 const getTotalStake = async (url, blockNumber) => {
   const query = myStakeQuery(blockNumber);
